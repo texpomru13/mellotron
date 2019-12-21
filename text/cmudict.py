@@ -13,7 +13,7 @@ punctuation = '!\'",.:;? '
 
 
 
-cmudct = read_cmu('ru.dic')
+#cmudct = read_cmu('ru.dic')
 
 softhard_cons = {                                                                
     u"б" : u"b",
@@ -135,30 +135,43 @@ def convert(stressword):
 
     return " ".join(list(phones_dct.values()))
 
-for line in open(sys.argv[1]):
-    stressword = re.sub("\s+", " ", line.strip().lower())
-    print(stressword.replace("+", ""),  convert(stressword))
+# for line in open(sys.argv[1]):
+#     stressword = re.sub("\s+", " ", line.strip().lower())
+#     print(stressword.replace("+", ""),  convert(stressword))
 
 
 
-valid_symbols = [
-  'AA', 'AA0', 'AA1', 'AA2', 'AE', 'AE0', 'AE1', 'AE2', 'AH', 'AH0', 'AH1', 'AH2',
-  'AO', 'AO0', 'AO1', 'AO2', 'AW', 'AW0', 'AW1', 'AW2', 'AY', 'AY0', 'AY1', 'AY2',
-  'B', 'CH', 'D', 'DH', 'EH', 'EH0', 'EH1', 'EH2', 'ER', 'ER0', 'ER1', 'ER2', 'EY',
-  'EY0', 'EY1', 'EY2', 'F', 'G', 'HH', 'IH', 'IH0', 'IH1', 'IH2', 'IY', 'IY0', 'IY1',
-  'IY2', 'JH', 'K', 'L', 'M', 'N', 'NG', 'OW', 'OW0', 'OW1', 'OW2', 'OY', 'OY0',
-  'OY1', 'OY2', 'P', 'R', 'S', 'SH', 'T', 'TH', 'UH', 'UH0', 'UH1', 'UH2', 'UW',
-  'UW0', 'UW1', 'UW2', 'V', 'W', 'Y', 'Z', 'ZH'
-]
+# valid_symbols = [
+#   'AA', 'AA0', 'AA1', 'AA2', 'AE', 'AE0', 'AE1', 'AE2', 'AH', 'AH0', 'AH1', 'AH2',
+#   'AO', 'AO0', 'AO1', 'AO2', 'AW', 'AW0', 'AW1', 'AW2', 'AY', 'AY0', 'AY1', 'AY2',
+#   'B', 'CH', 'D', 'DH', 'EH', 'EH0', 'EH1', 'EH2', 'ER', 'ER0', 'ER1', 'ER2', 'EY',
+#   'EY0', 'EY1', 'EY2', 'F', 'G', 'HH', 'IH', 'IH0', 'IH1', 'IH2', 'IY', 'IY0', 'IY1',
+#   'IY2', 'JH', 'K', 'L', 'M', 'N', 'NG', 'OW', 'OW0', 'OW1', 'OW2', 'OY', 'OY0',
+#   'OY1', 'OY2', 'P', 'R', 'S', 'SH', 'T', 'TH', 'UH', 'UH0', 'UH1', 'UH2', 'UW',
+#   'UW0', 'UW1', 'UW2', 'V', 'W', 'Y', 'Z', 'ZH'
+# ]
+
+valid_symbols = ['a1', 'a0', 'i1', 'h', 'm', 'lj', 'b', 'z', 'k', 'd', 'nj', 'i0',
+ 'j', 'e1', 'e0', 'o1', 'u1', 'l', 't', 'o0', 'n', 'r', 'rj', 'sj', 'fj', 's', 'sch',
+  'hj', 'gj', 'zh', 'mj', 'v', 'u0', 'ch', 'y0', 'zj', 'kj', 'dj', 'f', 'sh', 'vj',
+   'tj', 'c', 'bj', 'g', 'y1', 'p', 'pj']
 
 _valid_symbol_set = set(valid_symbols)
+
+def read_cmu(filse):
+    data = open(filse).read().split('\n')
+    cmudct = {}
+    for i in data:
+        info = i.split(' ')
+        cmudct[info[0]] = ' '.join(info[1:])
+    return cmudct
 
 
 class CMUDict:
   '''Thin wrapper around CMUDict data. http://www.speech.cs.cmu.edu/cgi-bin/cmudict'''
   def __init__(self, file_or_path, keep_ambiguous=True):
     if isinstance(file_or_path, str):
-      entries = _read_cmu(file_or_path)
+      entries = read_cmu(file_or_path)
       # with open(file_or_path, encoding='latin-1') as f:
       #   entries = _parse_cmudict(f)
     else:
@@ -172,14 +185,23 @@ class CMUDict:
     return len(self._entries)
 
 
+  def _read_cmu(self, filse):
+    data = open(filse).read().split('\n')
+    cmudct = {}
+    for i in data:
+        info = i.split(' ')
+        cmudct[info[0]] = ' '.join(info[1:])
+    return cmudct
+
+
   def lookup(self, word):
     '''Returns list of ARPAbet pronunciations of the given word.'''
     if word in punctuation:
-        return word
-    elif word in cmudct:
+        return None
+    elif word in self._entries:
         return self._entries.get(word)
     else:
-        phones = ("#" + words_dct[i] + "#")
+        phones = ("#" + word + "#")
 
 
         # Assign stress marks

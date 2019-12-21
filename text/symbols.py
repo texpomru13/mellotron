@@ -11,7 +11,7 @@ _math = '#%&*+-/[]()'
 _special = '_@©°½—₩€$'
 _accented = 'áçéêëñöøćž'
 _numbers = '0123456789'
-_letters = 'ЙЦУКЕНГШЩЗХЪЁФЫВАПРОЛДЖЭЯЧСМИТЬБЮйцукенгшщзхъёфывапролджэячсмитьбю'
+_letters = 'ЙЦУКЕНГШЩЗХЪЁФЫВАПРОЛДЖЭЯЧСМИТЬБЮйцукенгшщзхъёфывапролджэячсмитьбюQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm'
 
 # Prepend "@" to ARPAbet symbols to ensure uniqueness (some are the same as
 # uppercase letters):

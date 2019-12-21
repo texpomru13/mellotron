@@ -42,6 +42,7 @@ def init_distributed(hparams, n_gpus, rank, group_name):
 def prepare_dataloaders(hparams):
     # Get data, data loaders and collate function ready
     trainset = TextMelLoader(hparams.training_files, hparams)
+    print("trainset.speaker_ids {}".format(str(trainset.speaker_ids)))
     valset = TextMelLoader(hparams.validation_files, hparams,
                            speaker_ids=trainset.speaker_ids)
     collate_fn = TextMelCollate(hparams.n_frames_per_step)
@@ -163,7 +164,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
     if hparams.fp16_run:
         from apex import amp
         model, optimizer = amp.initialize(
-            model, optimizer, opt_level='O2')
+            model, optimizer, opt_level='O1')
 
     if hparams.distributed_run:
         model = apply_gradient_allreduce(model)
@@ -195,6 +196,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
     # ================ MAIN TRAINNIG LOOP! ===================
     for epoch in range(epoch_offset, hparams.epochs):
         print("Epoch: {}".format(epoch))
+        print("train loadre len {}".format(str(len(train_loader))))
         if train_sampler is not None:
             train_sampler.set_epoch(epoch)
         for i, batch in enumerate(train_loader):
@@ -206,7 +208,9 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
                     param_group['lr'] = learning_rate
 
             model.zero_grad()
+            #print(batch)
             x, y = model.parse_batch(batch)
+            #print(x)
             y_pred = model(x)
 
             loss = criterion(y_pred, y)
@@ -253,11 +257,11 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-o', '--output_directory', type=str,
+    parser.add_argument('-o', '--output_directory', type=str, default = 'outdir',
                         help='directory to save checkpoints')
-    parser.add_argument('-l', '--log_directory', type=str,
+    parser.add_argument('-l', '--log_directory', type=str,default = 'logdir',
                         help='directory to save tensorboard logs')
-    parser.add_argument('-c', '--checkpoint_path', type=str, default=None,
+    parser.add_argument('-c', '--checkpoint_path', type=str, 
                         required=False, help='checkpoint path')
     parser.add_argument('--warm_start', action='store_true',
                         help='load model weights only, ignore specified layers')

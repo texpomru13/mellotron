@@ -11,11 +11,14 @@ _id_to_symbol = {i: s for i, s in enumerate(symbols)}
 # Regular expression matching text enclosed in curly braces:
 _curly_re = re.compile(r'(.*?)\{(.+?)\}(.*)')
 
+val_sybols = 'йцукенгшщзхъёфывапролджэячсмитьбю-'
+punctuation = '!\'"(),.:;? '
+
 
 def get_arpabet(word, dictionary):
   word_arpabet = dictionary.lookup(word)
   if word_arpabet is not None:
-    return "{" + word_arpabet[0] + "}"
+    return "{" + word_arpabet + "}"
   else:
     return word
 
@@ -38,12 +41,34 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
 
   space = _symbols_to_sequence(' ')
   # Check for curly braces and treat their contents as ARPAbet:
+  #print(text)
   while len(text):
     m = _curly_re.match(text)
     if not m:
       clean_text = _clean_text(text, cleaner_names)
+      #print(clean_text)
       if cmudict is not None:
-        clean_text = [get_arpabet(w, dictionary) for w in clean_text.split(" ")]
+        #print('cmudict')
+        #print(clean_text.split(" "))
+        n_clean_text = ''
+        
+        for wo in clean_text.split(" "):
+          word = ''
+          for j in wo:
+            if j in val_sybols:
+              word += j
+            elif j in punctuation:
+              if word == "" and j == '"':
+                word += '" '
+              elif j == '(':
+                word += '( '
+              else:
+                word += ' '+j
+          n_clean_text += " "+word
+
+        #print(n_clean_text)
+        clean_text = [get_arpabet(w, dictionary) for w in n_clean_text.split(" ")]
+        #print(clean_text)
         for i in range(len(clean_text)):
             t = clean_text[i]
             if t.startswith("{"):
@@ -62,6 +87,7 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
 
   # remove trailing space
   sequence = sequence[:-1] if sequence[-1] == space[0] else sequence
+  #print(sequence)
   return sequence
 
 
