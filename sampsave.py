@@ -11,7 +11,7 @@ def parse_args(parser):
     Parse commandline arguments.
     """
     parser.add_argument('-d', '--dataset-path', type=str,
-                        default='./', help='Path to dataset')
+                        default='', help='Path to dataset')
     parser.add_argument('--wav-files', required=True,
                         type=str, help='Path to filelist with audio paths and text')
     parser.add_argument('--text-cleaners', nargs='*',
@@ -73,7 +73,7 @@ def main():
     args = parser.parse_args()
     args.load_mel_from_disk = False
 
-    audiopaths_and_text_list = load_filepaths_and_text(args.dataset_path, args.wav_files)
+    audiopaths_and_text_list = load_filepaths_and_text(rgs.wav_files)
 
     data_loader = TextMelLoader(args.dataset_path, args.wav_files, args)
 
