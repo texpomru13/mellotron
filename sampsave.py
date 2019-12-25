@@ -75,7 +75,7 @@ def main():
 
     audiopaths_and_text_list = load_filepaths_and_text(args.wav_files)
 
-    data_loader = TextMelLoader(args.dataset_path, args.wav_files, args)
+    data_loader = TextMelLoader(args.wav_files, args)
 
     index = range(len(audiopaths_and_text_list))
     cnt = len(audiopaths_and_text_list)
