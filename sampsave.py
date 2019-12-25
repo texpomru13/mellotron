@@ -49,8 +49,8 @@ path = 'train_taco/samp/'
 def samsave(i):
     global data_loader
     global cnt
-    global audiopath_and_text
-    audiopath, text, speaker = audiopath_and_text[i]
+    global audiopaths_and_text_list
+    audiopath, text, speaker = audiopaths_and_text_list[i]
     text = data_loader.get_text(text)
     mel, f0 = data_loader.get_mel_and_f0(audiopath)
     speaker_id = data_loader.get_speaker_id(speaker)
