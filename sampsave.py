@@ -41,7 +41,7 @@ def parse_args(parser):
                         help='Maximum mel frequency')
     parser.add_argument('--p-arpabet', default=1.0, type=float,
                         help='Number of bins in mel-spectrograms')
-    parser.add_argument('--cmudict-path', default='data/ru.dic', type=float,
+    parser.add_argument('--cmudict-path', default='data/ru.dic', type=str,
                         help='Number of bins in mel-spectrograms') 
 
     return parser
