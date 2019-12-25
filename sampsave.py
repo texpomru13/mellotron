@@ -73,7 +73,7 @@ def main():
     args = parser.parse_args()
     args.load_mel_from_disk = False
 
-    audiopaths_and_text_list = load_filepaths_and_text(rgs.wav_files)
+    audiopaths_and_text_list = load_filepaths_and_text(args.wav_files)
 
     data_loader = TextMelLoader(args.dataset_path, args.wav_files, args)
 
