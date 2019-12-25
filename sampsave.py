@@ -15,7 +15,7 @@ def parse_args(parser):
     parser.add_argument('--wav-files', required=True,
                         type=str, help='Path to filelist with audio paths and text')
     parser.add_argument('--text-cleaners', nargs='*',
-                        default=['english_cleaners'], type=str,
+                        default=['basic_cleaners'], type=str,
                         help='Type of text cleaners for input text')
     parser.add_argument('--max-wav-value', default=32768.0, type=float,
                         help='Maximum audiowave value')
@@ -41,6 +41,8 @@ def parse_args(parser):
                         help='Maximum mel frequency')
     parser.add_argument('--p-arpabet', default=1.0, type=float,
                         help='Number of bins in mel-spectrograms')
+    parser.add_argument('--cmudict-path', default='data/ru.dic', type=float,
+                        help='Number of bins in mel-spectrograms') 
 
     return parser
 path = 'train_taco/samp/'
