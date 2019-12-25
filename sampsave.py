@@ -33,6 +33,14 @@ def parse_args(parser):
                         help='Maximum mel frequency')
     parser.add_argument('--n-mel-channels', default=80, type=int,
                         help='Number of bins in mel-spectrograms')
+    parser.add_argument('--f0-min', default=80, type=int,
+                        help='Window length')
+    parser.add_argument('--f0-max', default=880, type=int,
+                        help='Minimum mel frequency')
+    parser.add_argument('--harm-thresh', default=0.25, type=float,
+                        help='Maximum mel frequency')
+    parser.add_argument('--p-arpabet', default=1.0, type=float,
+                        help='Number of bins in mel-spectrograms')
 
     return parser
 path = 'train_taco/samp/'
