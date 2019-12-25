@@ -91,7 +91,7 @@ def main():
     cnt = len(audiopaths_and_text_list)
 
 
-    pool = Pool(processes=-1)
+    pool = Pool(processes=64)
     pool.map(samsave, index)
     #audio2mel(args.dataset_path, args.wav_files, args)
 
