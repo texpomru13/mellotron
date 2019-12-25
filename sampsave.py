@@ -1,7 +1,7 @@
 import argparse
 import torch
 
-from melotron.data_utils import TextMelLoader
+from data_utils import TextMelLoader
 from utils import load_filepaths_and_text
 from multiprocessing import Pool
 from pathlib import Path
@@ -35,7 +35,7 @@ def parse_args(parser):
                         help='Number of bins in mel-spectrograms')
 
     return parser
-path = 'taco_train/samp/'
+path = 'train_taco/samp/'
 def samsave(i):
     global data_loader
     global cnt
