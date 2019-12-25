@@ -14,8 +14,6 @@ def parse_args(parser):
                         default='./', help='Path to dataset')
     parser.add_argument('--wav-files', required=True,
                         type=str, help='Path to filelist with audio paths and text')
-    parser.add_argument('--mel-files', required=True,
-                        type=str, help='Path to filelist with mel paths and text')
     parser.add_argument('--text-cleaners', nargs='*',
                         default=['english_cleaners'], type=str,
                         help='Type of text cleaners for input text')
