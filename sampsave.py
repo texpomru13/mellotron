@@ -46,17 +46,6 @@ def parse_args(parser):
 
     return parser
 path = 'train_taco/samp/'
-def samsave(i):
-    global data_loader
-    global cnt
-    global audiopaths_and_text_list
-    audiopath, text, speaker = audiopaths_and_text_list[i]
-    text = data_loader.get_text(text)
-    mel, f0 = data_loader.get_mel_and_f0(audiopath)
-    speaker_id = data_loader.get_speaker_id(speaker)
-    torch.save((text, mel, speaker_id, f0), path+Path(audiopath).stem + '.pt')
-    if i%1000 == 0:
-        print("done", i, "/", cnt)
 
 def sampletrain(dataset_path, audiopaths_and_text, args):
 
@@ -89,6 +78,19 @@ def main():
 
     index = range(len(audiopaths_and_text_list))
     cnt = len(audiopaths_and_text_list)
+
+    def samsave(i):
+        global data_loader
+        global cnt
+        global audiopaths_and_text_list
+        audiopath, text, speaker = audiopaths_and_text_list[i]
+        text = data_loader.get_text(text)
+        mel, f0 = data_loader.get_mel_and_f0(audiopath)
+        speaker_id = data_loader.get_speaker_id(speaker)
+        torch.save((text, mel, speaker_id, f0), path+Path(audiopath).stem + '.pt')
+        if i%1000 == 0:
+            print("done", i, "/", cnt)
+
 
 
     pool = Pool(processes=64)
