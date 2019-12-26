@@ -253,6 +253,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
                                     checkpoint_path)
 
             iteration += 1
+            torch.cuda.empty_cache()
 
 
 if __name__ == '__main__':
