@@ -46,6 +46,7 @@ def parse_args(parser):
 
     return parser
 path = 'train_taco/samp/'
+lidi = os.listdir(path)
 
 def samsave(ij):
     # global data_loader
@@ -55,12 +56,13 @@ def samsave(ij):
     data_loader = ij[1]
     audiopaths_and_text_list = ij[2]
     audiopath, text, speaker = audiopaths_and_text_list
-    text = data_loader.get_text(text)
-    mel, f0 = data_loader.get_mel_and_f0(audiopath)
-    speaker_id = data_loader.get_speaker_id(speaker)
-    torch.save((text, mel, speaker_id, f0), path+Path(audiopath).stem + '.pt')
-    if i%1000 == 0:
-        print("done", i, "/", cnt)
+    if Path(audiopath).stem + '.pt' not in lidi: 
+        text = data_loader.get_text(text)
+        mel, f0 = data_loader.get_mel_and_f0(audiopath)
+        speaker_id = data_loader.get_speaker_id(speaker)
+        torch.save((text, mel, speaker_id, f0), path+Path(audiopath).stem + '.pt')
+        if i%1000 == 0:
+            print("done", i, "/", cnt)
 
 def sampletrain(dataset_path, audiopaths_and_text, args):
 

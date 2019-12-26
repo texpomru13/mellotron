@@ -6,6 +6,8 @@ import torch
 import torch.utils.data
 import librosa
 
+from pathlib import Path
+
 import layers
 from utils import load_wav_to_torch, load_filepaths_and_text
 from text import text_to_sequence, cmudict
@@ -96,7 +98,9 @@ class TextMelLoader(torch.utils.data.Dataset):
         return text_norm
 
     def __getitem__(self, index):
-        return self.get_data(self.audiopaths_and_text[index])
+        #return self.get_data(self.audiopaths_and_text[index])
+        audiopath, text, speaker = self.audiopaths_and_text[index]
+        return torch.load('train_taco/samp/' + Path(audiopath).stem + '.pt')
 
     def __len__(self):
         return len(self.audiopaths_and_text)
