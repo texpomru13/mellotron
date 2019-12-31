@@ -97,7 +97,7 @@ class HParams(object):
         self.ref_enc_gru_size=128
 
         # Style Token Layer
-        self.token_embedding_size=256
+        self.token_embedding_size=512
         self.token_num=10
         self.num_heads=8
 
