@@ -46,7 +46,7 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
     m = _curly_re.match(text)
     if not m:
       clean_text = _clean_text(text, cleaner_names)
-      #print(clean_text)
+      print(clean_text)
       if cmudict is not None:
         #print('cmudict')
         #print(clean_text.split(" "))
@@ -66,7 +66,10 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
               else:
                 word += j
               
-          n_clean_text += " "+word
+          if n_clean_text == "":
+            n_clean_text += word
+          else:
+            n_clean_text += " "+word
           
 
         #print(n_clean_text)
@@ -90,7 +93,7 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
 
   # remove trailing space
   sequence = sequence[:-1] if sequence[-1] == space[0] else sequence
-  sequence = sequence[1:]
+  #sequence = sequence[1:]
   sequence.append(_symbol_to_id['~'])
   print(sequence)
   return sequence
