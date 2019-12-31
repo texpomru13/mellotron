@@ -41,7 +41,7 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
 
   space = _symbols_to_sequence(' ')
   # Check for curly braces and treat their contents as ARPAbet:
-  #print(text)
+  print(text)
   while len(text):
     m = _curly_re.match(text)
     if not m:
@@ -57,18 +57,20 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
           for j in wo:
             if j in val_sybols:
               word += j
+              n_clean_text += " "+word
             elif j in punctuation:
               if word == "" and j == '"':
                 word += '" '
               elif j == '(':
                 word += '( '
               else:
-                word += ' '+j
-          n_clean_text += " "+word
+                word += j
+              n_clean_text += " "+word
+          
 
         #print(n_clean_text)
         clean_text = [get_arpabet(w, dictionary) for w in n_clean_text.split(" ")]
-        #print(clean_text)
+        print(clean_text)
         for i in range(len(clean_text)):
             t = clean_text[i]
             if t.startswith("{"):
@@ -87,6 +89,8 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
 
   # remove trailing space
   sequence = sequence[:-1] if sequence[-1] == space[0] else sequence
+  sequence = sequence[1:]
+  sequence.append(_symbol_to_id['~'])
   #print(sequence)
   return sequence
 

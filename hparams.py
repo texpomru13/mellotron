@@ -25,7 +25,7 @@ class HParams(object):
         ################################
         # Data Parameters             #
         ################################
-        self.training_files='filelists/tarin_filelist.txt'
+        self.training_files='filelists/train_filelist.txt'
         self.validation_files='filelists/val_filelist.txt'
         self.text_cleaners=['basic_cleaners']
         self.p_arpabet=1.0
@@ -86,7 +86,7 @@ class HParams(object):
 
         # Speaker embedding
         self.n_speakers=20
-        self.speaker_embedding_dim=128
+        self.speaker_embedding_dim=512
 
         # Reference encoder
         self.with_gst=True
