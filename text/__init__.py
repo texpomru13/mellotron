@@ -57,7 +57,7 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
           for j in wo:
             if j in val_sybols:
               word += j
-              n_clean_text += " "+word
+
             elif j in punctuation:
               if word == "" and j == '"':
                 word += '" '
@@ -65,7 +65,8 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
                 word += '( '
               else:
                 word += j
-              n_clean_text += " "+word
+              
+          n_clean_text += " "+word
           
 
         #print(n_clean_text)
