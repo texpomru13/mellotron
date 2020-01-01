@@ -88,8 +88,12 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
         #print(clean_text)
         for i in range(len(clean_text)):
             t = clean_text[i]
+            #is_punkt
             if t in punctuation:
-              sequence.pop()
+              try:
+                sequence.pop()
+              except:
+                print(clean_text)
             if t.startswith("{"):
               sequence += _arpabet_to_sequence(t[1:-1])
             else:
