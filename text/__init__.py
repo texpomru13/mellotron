@@ -15,7 +15,7 @@ val_sybols = 'йцукенгшщзхъёфывапролджэячсмитьбю
 punctuation = '!\'"(),.:;? '
 
 
-# def get_arpabet(word, dictionary):
+def get_arpabet(word, dictionary):
 #   if word[-1] in punctuation:
 #     word_arpabet = dictionary.lookup(word[:-1])
 #   elif word[0] in punctuation and word[-1] in punctuation:
