@@ -12,7 +12,7 @@ _id_to_symbol = {i: s for i, s in enumerate(symbols)}
 _curly_re = re.compile(r'(.*?)\{(.+?)\}(.*)')
 
 val_sybols = 'йцукенгшщзхъёфывапролджэячсмитьбю-'
-punctuation = '!\'"(),.:;? '
+punctuation = '!\'"(),.:;...? '
 
 
 def get_arpabet(word, dictionary):
