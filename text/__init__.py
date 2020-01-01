@@ -15,13 +15,13 @@ val_sybols = 'йцукенгшщзхъёфывапролджэячсмитьбю
 punctuation = '!\'"(),.:;? '
 
 
-def get_arpabet(word, dictionary):
-  if word[-1] in punctuation:
-    word_arpabet = dictionary.lookup(word[:-1])
-  elif word[0] in punctuation and word[-1] in punctuation:
-    word_arpabet = dictionary.lookup(word[1:-1])
-  else:
-    word_arpabet = dictionary.lookup(word)
+# def get_arpabet(word, dictionary):
+#   if word[-1] in punctuation:
+#     word_arpabet = dictionary.lookup(word[:-1])
+#   elif word[0] in punctuation and word[-1] in punctuation:
+#     word_arpabet = dictionary.lookup(word[1:-1])
+#   else:
+  word_arpabet = dictionary.lookup(word)
   if word_arpabet is not None:
     return "{" + word_arpabet + "}"
   else:
