@@ -164,7 +164,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
     if hparams.fp16_run:
         from apex import amp
         model, optimizer = amp.initialize(
-            model, optimizer, opt_level='O2')
+            model, optimizer, opt_level='O1')
 
     if hparams.distributed_run:
         model = apply_gradient_allreduce(model)
