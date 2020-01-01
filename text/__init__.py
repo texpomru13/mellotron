@@ -77,13 +77,13 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
             n_clean_text += " "+word
           
 
-        #print(n_clean_text)
+        print(n_clean_text)
         n_clean_text = [get_arpabet(w, dictionary) for w in n_clean_text.split(" ")]
         clean_text = []
         for i in n_clean_text:
           if i != '':
             clean_text.append(i)
-        #print(clean_text)
+        print(clean_text)
         for i in range(len(clean_text)):
             t = clean_text[i]
             if t in punctuation:
