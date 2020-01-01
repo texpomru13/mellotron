@@ -21,6 +21,8 @@ def get_arpabet(word, dictionary):
 #   elif word[0] in punctuation and word[-1] in punctuation:
 #     word_arpabet = dictionary.lookup(word[1:-1])
 #   else:
+  if word in punctuation:
+    return word
   word_arpabet = dictionary.lookup(word)
   if word_arpabet is not None:
     return "{" + word_arpabet + "}"
