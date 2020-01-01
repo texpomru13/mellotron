@@ -66,7 +66,7 @@ class HParams(object):
         self.prenet_f0_kernel_size=1
         self.prenet_rms_dim=0
         self.prenet_rms_kernel_size=1
-        self.max_decoder_steps=10000
+        self.max_decoder_steps=1000
         self.gate_threshold=0.5
         self.p_attention_dropout=0.1
         self.p_decoder_dropout=0.1
