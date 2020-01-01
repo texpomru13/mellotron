@@ -53,7 +53,7 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
     m = _curly_re.match(text)
     if not m:
       clean_text = _clean_text(text, cleaner_names)
-      print(clean_text)
+      #print(clean_text)
       if cmudict is not None:
         #print('cmudict')
         #print(clean_text.split(" "))
@@ -79,13 +79,13 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
             n_clean_text += " "+word
           
 
-        print(n_clean_text)
+        #print(n_clean_text)
         n_clean_text = [get_arpabet(w, dictionary) for w in n_clean_text.split(" ")]
         clean_text = []
         for i in n_clean_text:
           if i != '':
             clean_text.append(i)
-        print(clean_text)
+        #print(clean_text)
         for i in range(len(clean_text)):
             t = clean_text[i]
             if t in punctuation:
@@ -108,7 +108,7 @@ def text_to_sequence(text, cleaner_names, dictionary=None):
   sequence = sequence[:-1] if sequence[-1] == space[0] else sequence
   #sequence = sequence[1:]
   sequence.append(_symbol_to_id['~'])
-  print(sequence)
+  #print(sequence)
   return sequence
 
 
