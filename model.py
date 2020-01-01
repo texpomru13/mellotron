@@ -400,8 +400,8 @@ class Decoder(nn.Module):
             decoder_input, (self.decoder_hidden, self.decoder_cell))
         self.decoder_hidden = F.dropout(
             self.decoder_hidden, self.p_decoder_dropout, self.training)
-        self.decoder_cell = F.dropout(
-           self.decoder_cell, self.p_decoder_dropout, self.training)
+        # self.decoder_cell = F.dropout(
+        #    self.decoder_cell, self.p_decoder_dropout, self.training)
 
         decoder_hidden_attention_context = torch.cat(
             (self.decoder_hidden, self.attention_context), dim=1)
