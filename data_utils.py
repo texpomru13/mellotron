@@ -98,9 +98,9 @@ class TextMelLoader(torch.utils.data.Dataset):
         return text_norm
 
     def __getitem__(self, index):
-        return self.get_data(self.audiopaths_and_text[index])
-        # audiopath, text, speaker = self.audiopaths_and_text[index]
-        # return torch.load('train_taco/samp/' + Path(audiopath).stem + '.pt')
+        # return self.get_data(self.audiopaths_and_text[index])
+        audiopath, text, speaker = self.audiopaths_and_text[index]
+        return torch.load('train_taco/samp/' + Path(audiopath).stem + '.pt')
 
     def __len__(self):
         return len(self.audiopaths_and_text)
