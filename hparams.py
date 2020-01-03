@@ -14,7 +14,7 @@ class HParams(object):
         self.iters_per_checkpoint=500
         self.seed=1234
         self.dynamic_loss_scaling=True
-        self.fp16_run=False
+        self.fp16_run=True
         self.distributed_run=True
         self.dist_backend="nccl"
         self.dist_url="tcp://localhost:54321"
@@ -86,7 +86,7 @@ class HParams(object):
 
         # Speaker embedding
         self.n_speakers=20
-        self.speaker_embedding_dim=512
+        self.speaker_embedding_dim=128
 
         # Reference encoder
         self.with_gst=True
@@ -110,7 +110,7 @@ class HParams(object):
         self.learning_rate_anneal=50000
         self.weight_decay=1e-6
         self.grad_clip_thresh=1.0
-        self.batch_size=40
+        self.batch_size=90
         self.mask_padding=True  # set model's padded outputs to padded values
         
 
@@ -235,4 +235,3 @@ def create_hparams(hparams_string=None, verbose=False):
     #     tf.compat.v1.logging.info('Final parsed hparams: %s', hparams.values())
 
     return HParams()
-

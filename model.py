@@ -408,10 +408,10 @@ class Decoder(nn.Module):
             decoder_hidden_attention_context)
 
         gate_prediction = self.gate_layer(decoder_hidden_attention_context)
-        self.decoder_cell = F.dropout(
-           self.decoder_cell, self.p_decoder_dropout, self.training)
-        self.attention_cell = F.dropout(
-           self.attention_cell, self.p_attention_dropout, self.training)
+        # self.decoder_cell = F.dropout(
+        #    self.decoder_cell, self.p_decoder_dropout, self.training)
+        # self.attention_cell = F.dropout(
+        #    self.attention_cell, self.p_attention_dropout, self.training)
         return decoder_output, gate_prediction, self.attention_weights
 
     def forward(self, memory, decoder_inputs, memory_lengths, f0s):
