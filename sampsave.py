@@ -62,8 +62,8 @@ def samsave(ij):
         mel, f0 = data_loader.get_mel_and_f0(audiopath)
         speaker_id = data_loader.get_speaker_id(speaker)
         torch.save((text, mel, speaker_id, f0), path+Path(audiopath).stem + '.pt')
-        if i%1000 == 0:
-            print("done", i, "/", cnt)
+        # if i%1000 == 0:
+        #     print("done", i, "/", cnt)
 
 def sampletrain(dataset_path, audiopaths_and_text, args):
 
