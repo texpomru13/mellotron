@@ -14,13 +14,13 @@ class HParams(object):
         self.iters_per_checkpoint=500
         self.seed=1234
         self.dynamic_loss_scaling=True
-        self.fp16_run=True
+        self.fp16_run=False
         self.distributed_run=True
         self.dist_backend="nccl"
         self.dist_url="tcp://localhost:54321"
         self.cudnn_enabled=True
         self.cudnn_benchmark=False
-        self.ignore_layers=[]
+        self.ignore_layers=['speaker_embedding.weight']
 
         ################################
         # Data Parameters             #
@@ -110,7 +110,7 @@ class HParams(object):
         self.learning_rate_anneal=50000
         self.weight_decay=1e-6
         self.grad_clip_thresh=1.0
-        self.batch_size=90
+        self.batch_size=40
         self.mask_padding=True  # set model's padded outputs to padded values
         
 
