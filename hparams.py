@@ -20,7 +20,7 @@ class HParams(object):
         self.dist_url="tcp://localhost:54321"
         self.cudnn_enabled=True
         self.cudnn_benchmark=False
-        self.ignore_layers=['speaker_embedding.weight']
+        self.ignore_layers=[]
 
         ################################
         # Data Parameters             #
@@ -68,8 +68,8 @@ class HParams(object):
         self.prenet_rms_kernel_size=1
         self.max_decoder_steps=1000
         self.gate_threshold=0.5
-        self.p_attention_dropout=0.1
-        self.p_decoder_dropout=0.1
+        self.p_attention_dropout=0.3
+        self.p_decoder_dropout=0.3
         self.p_teacher_forcing=1.0
 
         # Attention parameters

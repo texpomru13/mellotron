@@ -197,15 +197,15 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
     for epoch in range(epoch_offset, hparams.epochs):
         print("Epoch: {}".format(epoch))
         print("train loadre len {}".format(str(len(train_loader))))
+        learning_rate = hparams.learning_rate_min/(epoch/2.5)*10 #epoch
+        for param_group in optimizer.param_groups:
+            param_group['lr'] = learning_rate
         if train_sampler is not None:
             train_sampler.set_epoch(epoch)
         for i, batch in enumerate(train_loader):
             start = time.perf_counter()
-            if iteration > 0 and iteration % hparams.learning_rate_anneal == 0:
-                learning_rate = max(
-                    hparams.learning_rate_min, learning_rate * 0.5)
-                for param_group in optimizer.param_groups:
-                    param_group['lr'] = learning_rate
+            # if iteration > 0 and iteration % hparams.learning_rate_anneal == 0:
+                
 
             model.zero_grad()
             #print(batch)
