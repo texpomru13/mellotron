@@ -14,7 +14,7 @@ class HParams(object):
         self.iters_per_checkpoint=500
         self.seed=1234
         self.dynamic_loss_scaling=True
-        self.fp16_run=False
+        self.fp16_run=True
         self.distributed_run=True
         self.dist_backend="nccl"
         self.dist_url="tcp://localhost:54321"
@@ -104,7 +104,7 @@ class HParams(object):
         ################################
         # Optimization Hyperparameters #
         ################################
-        self.use_saved_learning_rate=True
+        self.use_saved_learning_rate=False
         self.learning_rate=8e-4
         self.learning_rate_min=1e-5
         self.learning_rate_anneal=50000
