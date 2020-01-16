@@ -197,7 +197,7 @@ def train(output_directory, log_directory, checkpoint_path, warm_start, n_gpus,
     for epoch in range(epoch_offset, hparams.epochs):
         print("Epoch: {}".format(epoch))
         print("train loadre len {}".format(str(len(train_loader))))
-        if epoch % 10 == 0:
+        if (epoch - 5) % 10 == 0:
             learning_rate = learning_rate*.65 #epoch
             for param_group in optimizer.param_groups:
                 param_group['lr'] = learning_rate
