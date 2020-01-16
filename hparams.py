@@ -105,7 +105,7 @@ class HParams(object):
         # Optimization Hyperparameters #
         ################################
         self.use_saved_learning_rate=True
-        self.learning_rate=3.5e-4
+        self.learning_rate=8e-4
         self.learning_rate_min=1e-5
         self.learning_rate_anneal=50000
         self.weight_decay=1e-6
