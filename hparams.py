@@ -89,7 +89,7 @@ class HParams(object):
         self.speaker_embedding_dim=128
 
         # Reference encoder
-        self.with_gst=True
+        self.with_gst=False
         self.ref_enc_filters=[32, 32, 64, 64, 128, 128]
         self.ref_enc_size=[3, 3]
         self.ref_enc_strides=[2, 2]
@@ -105,7 +105,7 @@ class HParams(object):
         # Optimization Hyperparameters #
         ################################
         self.use_saved_learning_rate=False
-        self.learning_rate=8e-4
+        self.learning_rate=1e-3
         self.learning_rate_min=1e-5
         self.learning_rate_anneal=50000
         self.weight_decay=1e-6
